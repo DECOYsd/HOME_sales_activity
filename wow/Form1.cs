@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace wow
@@ -17,9 +10,9 @@ namespace wow
             InitializeComponent();
         }
 
-         double totalSales_Daniela = 0;
-         double totalSales_Edward = 0;
-         double totalSales_Fatima = 0;
+        double totalSales_Daniela = 0;
+        double totalSales_Edward = 0;
+        double totalSales_Fatima = 0;
 
 
         private double getSalesPerson_Amount(string salesInitial, double salesAmount)
@@ -60,7 +53,8 @@ namespace wow
             double salesAmount = Convert.ToDouble(textBox_AmountOfSale.Text);
 
             double amount = getSalesPerson_Amount(salesInitial, salesAmount);
-            label_ResultS.Text = "Updated " + salesInitial + " to " + amount + ".";
+            string name = salesInitial == "D" ? "Danielle" : (salesInitial == "E" ? "Edward" : "Fatima");
+            label_ResultS.Text = $"${salesAmount} in sales has been successfully recorded for {name}.\nBringing his/her total sales to ${amount}.";
         }
 
         private void Btn_Clear_Click(object sender, EventArgs e)
@@ -70,14 +64,9 @@ namespace wow
 
         private void Btn_Print_Click(object sender, EventArgs e)
         {
-            string print = "";
-            print += "Daniela: " + totalSales_Daniela + "\n";
-            print += "Edward: " + totalSales_Edward + "\n";
-            print += "Fatima: " + totalSales_Fatima + "\n\n";
-            print += "Total: " + (totalSales_Daniela + totalSales_Edward + totalSales_Fatima);
-
-            label_ResultS.Text = print;
-        }   
+            Form2 summary = new Form2(totalSales_Daniela, totalSales_Edward, totalSales_Fatima);
+            summary.Show();
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
 
